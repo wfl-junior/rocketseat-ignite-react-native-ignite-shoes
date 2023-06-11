@@ -12,6 +12,7 @@ import { Routes } from "~/routes";
 import { THEME } from "~/theme";
 
 OneSignal.setAppId(process.env.ONE_SIGNAL_APP_ID);
+OneSignal.setEmail("wallace@email.com");
 
 export default function App() {
   const [fontsLoaded] = useFonts({
