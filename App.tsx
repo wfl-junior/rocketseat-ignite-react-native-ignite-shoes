@@ -22,7 +22,23 @@ export default function App() {
 
   useEffect(() => {
     OneSignal.setNotificationOpenedHandler(event => {
-      console.log(event);
+      if ("actionId" in event.action) {
+        switch (event.action.actionId) {
+          case "1": {
+            console.log("Ver todas");
+            break;
+          }
+          case "2": {
+            console.log("Ver pedido");
+            break;
+          }
+          default: {
+            console.log("actionId inesperado: ", event.action.actionId);
+          }
+        }
+      } else {
+        console.log("Nenhum botão de ação selecionado");
+      }
     });
   }, []);
 
