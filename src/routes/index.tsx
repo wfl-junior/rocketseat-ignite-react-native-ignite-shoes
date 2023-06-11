@@ -11,17 +11,14 @@ import { AppRoutes } from "./app.routes";
 
 const linking: LinkingOptions<ReactNavigation.RootParamList> = {
   prefixes: [
-    "com.wfljunior.igniteshoes://",
     "igniteshoesapp://",
     "exp+igniteshoesapp://",
+    "com.wfljunior.igniteshoes://",
   ],
   config: {
     screens: {
       details: {
         path: "details/:productId",
-        // parse: {
-        //   productId: productId => productId,
-        // },
       },
     },
   },

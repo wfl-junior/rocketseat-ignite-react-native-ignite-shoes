@@ -1,29 +1,26 @@
-import { Platform } from "react-native";
-import { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
+  HStack,
   Heading,
   Image,
   ScrollView,
   Text,
   VStack,
   useToast,
-  HStack,
 } from "native-base";
-
+import { useEffect, useState } from "react";
+import { Platform } from "react-native";
+import { Button } from "../components/Button";
+import { Input } from "../components/Input";
+import { ProductCardProps } from "../components/ProductCard";
+import { ScreenHeader } from "../components/ScreenHeader";
+import { Sizes } from "../components/Sizes";
+import { PRODUCTS } from "../data/products";
 import { useCart } from "../hooks/useCart";
 
-import { PRODUCTS } from "../data/products";
-import { Sizes } from "../components/Sizes";
-
-import { Input } from "../components/Input";
-import { Button } from "../components/Button";
-import { ScreenHeader } from "../components/ScreenHeader";
-import { ProductCardProps } from "../components/ProductCard";
-
-type RouteParamsProps = {
+interface RouteParamsProps {
   productId: string;
-};
+}
 
 export function Details() {
   const [size, setSize] = useState("35");
