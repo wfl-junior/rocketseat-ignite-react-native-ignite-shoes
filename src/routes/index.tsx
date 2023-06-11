@@ -20,6 +20,9 @@ const linking: LinkingOptions<ReactNavigation.RootParamList> = {
       details: {
         path: "details/:productId",
       },
+      cart: {
+        path: "cart",
+      },
     },
   },
 };
