@@ -1,6 +1,9 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
 
-import { createCartUpdateTag } from "~/notifications/notificationTags";
+import {
+  createCartUpdateTag,
+  deleteCartUpdateTag,
+} from "~/notifications/notificationTags";
 import {
   StorageCartProps,
   storageProductGetAll,
@@ -34,6 +37,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   async function removeProductCart(productId: string) {
     const storageResponse = await storageProductRemove(productId);
     setCart(storageResponse);
+
+    if (storageResponse.length > 0) {
+      createCartUpdateTag(storageResponse.length);
+    } else {
+      deleteCartUpdateTag();
+    }
   }
 
   useEffect(() => {

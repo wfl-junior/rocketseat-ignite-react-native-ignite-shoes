@@ -18,3 +18,7 @@ export function createUserInfoTags() {
 export function createCartUpdateTag(itemsCount: number) {
   OneSignal.sendTag("cart_items_count", itemsCount.toString());
 }
+
+export function deleteCartUpdateTag() {
+  OneSignal.deleteTag("cart_items_count");
+}
