@@ -1,10 +1,10 @@
-import { createContext, useState, ReactNode, useEffect } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
 import {
   StorageCartProps,
-  storageProductSave,
-  storageProductRemove,
   storageProductGetAll,
+  storageProductRemove,
+  storageProductSave,
 } from "../storage/storageCart";
 
 export type CartContextDataProps = {
@@ -25,21 +25,13 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState<StorageCartProps[]>([]);
 
   async function addProductCart(newProduct: StorageCartProps) {
-    try {
-      const storageResponse = await storageProductSave(newProduct);
-      setCart(storageResponse);
-    } catch (error) {
-      throw error;
-    }
+    const storageResponse = await storageProductSave(newProduct);
+    setCart(storageResponse);
   }
 
   async function removeProductCart(productId: string) {
-    try {
-      const response = await storageProductRemove(productId);
-      setCart(response);
-    } catch (error) {
-      throw error;
-    }
+    const response = await storageProductRemove(productId);
+    setCart(response);
   }
 
   useEffect(() => {
