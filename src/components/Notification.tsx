@@ -8,17 +8,29 @@ import {
   Pressable,
   Text,
 } from "native-base";
+import { OSNotification } from "react-native-onesignal";
 
-type Props = {
-  title: string;
+interface AdditionalData {
+  route?: string;
+  product_id?: string;
+}
+
+interface NotificationProps {
   onClose: () => void;
-};
+  notification: OSNotification;
+}
 
-export function Notification({ title, onClose }: Props) {
+export function Notification({ notification, onClose }: NotificationProps) {
   const { navigate } = useNavigation();
 
   function handlePress() {
-    navigate("details", { productId: "7" });
+    const { route, product_id } = (notification.additionalData ??
+      {}) as AdditionalData;
+
+    if (route === "details" && product_id) {
+      navigate(route, { productId: product_id });
+    }
+
     onClose();
   }
 
@@ -40,9 +52,11 @@ export function Notification({ title, onClose }: Props) {
           as={Ionicons}
           name="notifications-outline"
         />
+
         <Text fontSize="md" color="black" flex={1}>
-          {title}
+          {notification.title}
         </Text>
+
         <IconButton
           color="black"
           onPress={onClose}

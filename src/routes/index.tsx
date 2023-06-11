@@ -24,7 +24,7 @@ export function Routes() {
 
       {notification?.title ? (
         <Notification
-          title={notification.title}
+          notification={notification}
           onClose={() => setNotification(null)}
         />
       ) : null}
