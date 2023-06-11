@@ -1,15 +1,14 @@
-import { FlatList } from 'native-base';
+import { FlatList } from "native-base";
 
-import { Brand } from './Brand';
-import { BRANDS } from '../data/brands';
+import { Brand } from "./Brand";
+import { BRANDS } from "../data/brands";
 
 type Props = {
   onSelect: (value: string) => void;
   selected: string;
-}
+};
 
 export function Brands({ onSelect, selected }: Props) {
-
   return (
     <FlatList
       data={BRANDS}

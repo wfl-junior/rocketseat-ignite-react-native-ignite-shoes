@@ -1,10 +1,10 @@
-import { ImageSourcePropType, Platform } from 'react-native';
-import { Pressable, IPressableProps, Image } from 'native-base';
+import { ImageSourcePropType, Platform } from "react-native";
+import { Pressable, IPressableProps, Image } from "native-base";
 
 type Props = IPressableProps & {
   image: ImageSourcePropType;
   isActive: boolean;
-}
+};
 
 export function Brand({ image, isActive, ...rest }: Props) {
   return (
@@ -20,7 +20,7 @@ export function Brand({ image, isActive, ...rest }: Props) {
       isPressed={isActive}
       _pressed={{
         borderColor: "green.500",
-        borderWidth: 1
+        borderWidth: 1,
       }}
       {...rest}
     >

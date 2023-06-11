@@ -1,8 +1,8 @@
-import { Button as ButtonNativeBase, IButtonProps, Text } from 'native-base';
+import { Button as ButtonNativeBase, IButtonProps, Text } from "native-base";
 
 type Props = IButtonProps & {
   title: string;
-}
+};
 
 export function Button({ title, ...rest }: Props) {
   return (
@@ -17,13 +17,9 @@ export function Button({ title, ...rest }: Props) {
       _pressed={{ bg: "green.500" }}
       {...rest}
     >
-      <Text
-        color="white"
-        fontFamily="heading"
-        fontSize="sm"
-      >
+      <Text color="white" fontFamily="heading" fontSize="sm">
         {title}
       </Text>
-    </ButtonNativeBase >
+    </ButtonNativeBase>
   );
 }

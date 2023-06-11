@@ -1,9 +1,9 @@
-import { Pressable, IPressableProps, Text } from 'native-base';
+import { Pressable, IPressableProps, Text } from "native-base";
 
 type Props = IPressableProps & {
   size: string;
   isActive: boolean;
-}
+};
 
 export function Size({ size, isActive, ...rest }: Props) {
   return (
@@ -19,7 +19,7 @@ export function Size({ size, isActive, ...rest }: Props) {
       isPressed={isActive}
       _pressed={{
         borderColor: "green.500",
-        borderWidth: 1
+        borderWidth: 1,
       }}
       {...rest}
     >

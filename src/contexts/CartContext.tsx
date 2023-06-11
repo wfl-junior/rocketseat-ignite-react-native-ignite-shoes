@@ -1,23 +1,25 @@
-import { createContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useState, ReactNode, useEffect } from "react";
 
 import {
   StorageCartProps,
   storageProductSave,
   storageProductRemove,
   storageProductGetAll,
-} from '../storage/storageCart';
+} from "../storage/storageCart";
 
 export type CartContextDataProps = {
   addProductCart: (newProduct: StorageCartProps) => Promise<void>;
   removeProductCart: (productId: string) => Promise<void>;
   cart: StorageCartProps[];
-}
+};
 
 type CartContextProviderProps = {
   children: ReactNode;
-}
+};
 
-export const CartContext = createContext<CartContextDataProps>({} as CartContextDataProps);
+export const CartContext = createContext<CartContextDataProps>(
+  {} as CartContextDataProps,
+);
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState<StorageCartProps[]>([]);
@@ -47,12 +49,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }, []);
 
   return (
-    <CartContext.Provider value={{
-      cart,
-      addProductCart,
-      removeProductCart,
-    }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addProductCart,
+        removeProductCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
-  )
+  );
 }
