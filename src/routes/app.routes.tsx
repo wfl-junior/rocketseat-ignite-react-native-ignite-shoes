@@ -1,15 +1,17 @@
-import { Ionicons, Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { useTheme } from "native-base";
 
+import { useCart } from "~/hooks/useCart";
 import { Cart } from "../screens/Cart";
-import { Home } from "../screens/Home";
 import { Details } from "../screens/Details";
+import { Home } from "../screens/Home";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
 export function AppRoutes() {
+  const { cart } = useCart();
   const { colors, sizes } = useTheme();
 
   return (
@@ -39,6 +41,7 @@ export function AppRoutes() {
         name="cart"
         component={Cart}
         options={{
+          tabBarBadge: cart.length || undefined,
           tabBarIcon: ({ color }) => (
             <Feather name="shopping-bag" color={color} size={sizes[6]} />
           ),
