@@ -14,7 +14,10 @@ import { THEME } from "~/theme";
 OneSignal.setAppId(process.env.ONE_SIGNAL_APP_ID);
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+  const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_700Bold,
+  });
 
   return (
     <NativeBaseProvider theme={THEME}>

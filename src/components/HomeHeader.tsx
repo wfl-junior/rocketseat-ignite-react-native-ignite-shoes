@@ -1,17 +1,15 @@
 import { Feather } from "@expo/vector-icons";
-import { Heading, HStack, Icon, Text, VStack, Avatar } from "native-base";
-
-import userPhotoDefault from "../assets/userPhotoDefault.png";
+import { Avatar, HStack, Heading, Icon, Text, VStack } from "native-base";
 
 export function HomeHeader() {
   return (
     <HStack pt={16} pb={5} px={8} bg="gray.600" alignItems="center">
       <Avatar
-        source={userPhotoDefault}
-        size={16}
         mr={4}
+        size={16}
         borderWidth={2}
         borderColor="gray.400"
+        source={{ uri: "https://github.com/wfl-junior.png" }}
       />
 
       <VStack flex={1}>
@@ -20,7 +18,7 @@ export function HomeHeader() {
         </Text>
 
         <Heading color="gray.100" fontSize="md" fontFamily="heading">
-          Rodrigo Gonçalves
+          Wallace Júnior
         </Heading>
       </VStack>
 
