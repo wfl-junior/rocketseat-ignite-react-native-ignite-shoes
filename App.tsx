@@ -4,10 +4,11 @@ import {
   useFonts,
 } from "@expo-google-fonts/roboto";
 import { NativeBaseProvider } from "native-base";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
-import OneSignal from "react-native-onesignal";
+import OneSignal, { OSNotification } from "react-native-onesignal";
 import { Loading } from "~/components/Loading";
+import { Notification } from "~/components/Notification";
 import { CartContextProvider } from "~/contexts/CartContext";
 import { Routes } from "~/routes";
 import { THEME } from "~/theme";
@@ -15,6 +16,7 @@ import { THEME } from "~/theme";
 OneSignal.setAppId(process.env.ONE_SIGNAL_APP_ID);
 
 export default function App() {
+  const [notification, setNotification] = useState<OSNotification | null>(null);
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_700Bold,
@@ -22,7 +24,7 @@ export default function App() {
 
   useEffect(() => {
     OneSignal.setNotificationWillShowInForegroundHandler(event => {
-      console.log(JSON.stringify(event, null, 2));
+      setNotification(event.getNotification());
     });
   }, []);
 
@@ -39,6 +41,13 @@ export default function App() {
       <CartContextProvider>
         {fontsLoaded ? <Routes /> : <Loading />}
       </CartContextProvider>
+
+      {notification?.title && (
+        <Notification
+          title={notification.title}
+          onClose={() => setNotification(null)}
+        />
+      )}
     </NativeBaseProvider>
   );
 }
